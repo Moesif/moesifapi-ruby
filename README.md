@@ -58,7 +58,7 @@ After having installed the gem, you can easily use the SDK following these steps
 require 'moesif_api'
 
 api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
-api_controller = api_client.api_controller
+api_controller = api_client.api
 
 req_headers = JSON.parse('{'\
   '"Host": "api.acmeinc.com",'\
