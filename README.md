@@ -4,9 +4,7 @@ MoesifApi Lib for Ruby
 [Source Code on GitHub](https://github.com/moesif/moesifapi-ruby)
 
 __Check out Moesif's
-[Ruby developer documentation](https://www.moesif.com/developer-documentation) to learn more__
-
-(Documentation access requires an active account)
+[Ruby developer documentation](https://www.moesif.com/developer-documentation/?ruby) to learn more__
 
 How to configure:
 =================
