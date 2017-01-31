@@ -1,13 +1,15 @@
-MoesifApi Lib for Ruby
-======================
+# MoesifApi Lib for Ruby
+
 
 [Source Code on GitHub](https://github.com/moesif/moesifapi-ruby)
 
-__Check out Moesif's
-[Ruby developer documentation](https://www.moesif.com/developer-documentation/?ruby) to learn more__
+[Ruby Gem](https://github.com/Moesif/moesifapi-ruby)
 
-How to configure:
-=================
+__Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [Ruby API Reference](https://www.moesif.com/docs/api?ruby) to learn more__
+
+
+## How to configure:
+
 The generated code might need to be configured with your API credentials. To do that,
 open the file "configuration.rb" and edit it's contents.
 
@@ -15,39 +17,14 @@ Alternatively, you can modify the Configuration parameters at run-time through t
 ```
 MoesifApi::Configuration.your_paramater = YOUR_VALUE
 ```
-Install from RubyGems
-=====================
+### Install from RubyGems
+
+```
 gem install moesif_api
+```
 
-How to build and install manually:
-==================================
-The generated code depends on a few Ruby gems. The references to these gems are
-added in the gemspec file. The easiest way to resolve the dependencies,
-build the gem and install it is through Rake:
+## How to use:
 
-  1. Install Rake if not already installed: `gem install rake`
-  2. Install Bundler if not already installed: `gem install bundler`
-  3. From terminal/cmd navigate to the root directory of the SDK.
-  4. Invoke: `rake install`
-
-Alternatively, you can build and install the gem manually:
-
-  1. From terminal/cmd navigate to the root directory of the SDK.
-  2. Run the build command: `gem build moesif_api.gemspec`
-  3. Run the install command: `gem install ./moesif_api-1.0.0.gem`
-
-Note: You will need to have internet access for this step.
-
-How  to test:
-=============
-You can test the generated SDK and the server with automatically generated test
-cases as follows:
-
-  1. From terminal/cmd navigate to the root directory of the SDK.
-  2. Invoke: `bundle exec rake`
-
-How to use:
-===========
 After having installed the gem, you can easily use the SDK following these steps.
 
   1. Create a "moesif_api_test.rb" file in the root directory.
@@ -120,3 +97,30 @@ event_model.session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98
 # Perform the API call through the SDK function
 response = api_controller.create_event(event_model)
 ```
+
+## How to build and install manually:
+
+The generated code depends on a few Ruby gems. The references to these gems are
+added in the gemspec file. The easiest way to resolve the dependencies,
+build the gem and install it is through Rake:
+
+  1. Install Rake if not already installed: `gem install rake`
+  2. Install Bundler if not already installed: `gem install bundler`
+  3. From terminal/cmd navigate to the root directory of the SDK.
+  4. Invoke: `rake install`
+
+Alternatively, you can build and install the gem manually:
+
+  1. From terminal/cmd navigate to the root directory of the SDK.
+  2. Run the build command: `gem build moesif_api.gemspec`
+  3. Run the install command: `gem install ./moesif_api-1.0.0.gem`
+
+Note: You will need to have internet access for this step.
+
+## How  to test:
+
+You can test the generated SDK and the server with automatically generated test
+cases as follows:
+
+  1. From terminal/cmd navigate to the root directory of the SDK.
+  2. Invoke: `bundle exec rake`
