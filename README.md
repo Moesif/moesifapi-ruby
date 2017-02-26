@@ -98,6 +98,28 @@ event_model.session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98
 response = api_controller.create_event(event_model)
 ```
 
+### update user
+
+You can also update the metadata for each user. The only required field is user_id
+
+```ruby
+api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
+api_controller = api_client.api
+
+metadata = JSON.parse('{'\
+  '"email": "testrubyapi@user.com",'\
+  '"name": "ruby api user",'\
+  '"custom": "testdata"'\
+'}')
+
+user_model = UserModel.new()
+user_model.modified_time = Time.now.utc.iso8601  # option, default now.
+user_model.user_id = "testrubyapiuser"  #only required field.
+user_model.metadata = metadata
+
+response = api_controller.update_user(user_model)
+
+```
 ## How to build and install manually:
 
 The generated code depends on a few Ruby gems. The references to these gems are

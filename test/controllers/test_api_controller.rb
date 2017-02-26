@@ -102,21 +102,6 @@ class ApiControllerTests < ControllerTestBase
       '"custom": "testdata"'\
     '}')
 
-    rsp_headers = JSON.parse('{'\
-      '"Date": "Tue, 23 Aug 2016 23:46:49 GMT",'\
-                    '"Vary": "Accept-Encoding",'\
-      '"Pragma": "no-cache",'\
-      '"Expires": "-1",'\
-      '"Content-Type": "application/json; charset=utf-8",'\
-                    '"Cache-Control": "no-cache"'\
-    '}')
-
-    rsp_body = JSON.parse('{'\
-      '"Error": "InvalidArgumentException",'\
-      '"Message": "Missing field field_a"'\
-    '}')
-
-
     user_model = UserModel.new()
     user_model.modified_time = Time.now.utc.iso8601
     user_model.user_id = "testrubyapiuser"
