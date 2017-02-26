@@ -26,6 +26,7 @@ require_relative 'moesif_api/models/event_request_model.rb'
 require_relative 'moesif_api/models/event_model.rb'
 require_relative 'moesif_api/models/event_response_model.rb'
 require_relative 'moesif_api/models/status_model.rb'
+require_relative 'moesif_api/models/user_model.rb'
 
 # Controllers
 require_relative 'moesif_api/controllers/base_controller.rb'

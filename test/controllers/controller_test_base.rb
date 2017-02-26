@@ -15,7 +15,7 @@ class ControllerTestBase < Test::Unit::TestCase
 
   # Called only once for a test class before any test has executed.
   def self.startup
-    @@api_client = MoesifAPIClient.new("eyJhcHAiOiIzNjU6NiIsInZlciI6IjIuMCIsIm9yZyI6IjM1OTo0IiwiaWF0IjoxNDczMzc5MjAwfQ.9WOx3D357PGMxrXzFm3pV3IzJSYNsO4oRudiMI8mQ3Q")
+    @@api_client = MoesifAPIClient.new("replace with your application id")
     @@request_timeout = 30
     @@assert_precision = 0.01
   end
