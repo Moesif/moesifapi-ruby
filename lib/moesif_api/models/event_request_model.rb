@@ -31,6 +31,10 @@ module MoesifApi
     # @return [Object]
     attr_accessor :body
 
+    # Transfer Encoding of body if other than JSON
+    # @return [String]
+    attr_accessor :transfer_encoding
+
     # A mapping from model property names to API property names
     def self.names
       if @hash.nil?
@@ -42,6 +46,7 @@ module MoesifApi
         @hash["api_version"] = "api_version"
         @hash["ip_address"] = "ip_address"
         @hash["body"] = "body"
+        @hash["transfer_encoding"] = "transfer_encoding"
       end
       @hash
     end
@@ -52,7 +57,8 @@ module MoesifApi
                    headers = nil,
                    api_version = nil,
                    ip_address = nil,
-                   body = nil)
+                   body = nil,
+                   transfer_encoding = nil)
       @time = time
       @uri = uri
       @verb = verb
@@ -60,6 +66,7 @@ module MoesifApi
       @api_version = api_version
       @ip_address = ip_address
       @body = body
+      @transfer_encoding = transfer_encoding
     end
 
     # Creates an instance of the object from a hash
@@ -75,15 +82,17 @@ module MoesifApi
         api_version = hash["api_version"]
         ip_address = hash["ip_address"]
         body = hash["body"]
+        transfer_encoding = hash["transfer_encoding"]
 
         # Create object from extracted values
         EventRequestModel.new(time,
-                                    uri,
-                                    verb,
-                                    headers,
-                                    api_version,
-                                    ip_address,
-                                    body)
+                              uri,
+                              verb,
+                              headers,
+                              api_version,
+                              ip_address,
+                              body,
+                              transfer_encoding)
       end
     end
   end

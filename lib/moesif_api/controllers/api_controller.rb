@@ -100,7 +100,8 @@ module MoesifApi
       # prepare headers
       _headers = {
         'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id
+        'X-Moesif-Application-Id' => Configuration.application_id,
+        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
       # Create the HttpRequest object for the call
@@ -139,7 +140,8 @@ module MoesifApi
       # prepare headers
       _headers = {
         'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id
+        'X-Moesif-Application-Id' => Configuration.application_id,
+        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
       # Create the HttpRequest object for the call

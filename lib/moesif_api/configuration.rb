@@ -8,6 +8,8 @@ module MoesifApi
     # Your Application Id for authentication/authorization
     @application_id = 'TODO: Replace'
 
+    @version = '1.1.0'
+
     # create the getters and setters
     class << self
       attr_accessor :base_uri
