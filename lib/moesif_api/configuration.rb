@@ -14,6 +14,7 @@ module MoesifApi
     class << self
       attr_accessor :base_uri
       attr_accessor :application_id
+      attr_accessor :version
     end
   end
 end

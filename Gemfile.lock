@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moesif_api (1.0.4)
+    moesif_api (1.1.0)
       json_mapper (~> 0.2.1)
       test-unit (~> 3.1.5)
       unirest (~> 1.1.2)
@@ -10,7 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
-    json (1.8.3)
+    json (1.8.6)
     json_mapper (0.2.1)
       json (>= 1.4.3)
     mime-types (1.25.1)
