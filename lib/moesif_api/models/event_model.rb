@@ -23,7 +23,7 @@ module MoesifApi
     attr_accessor :user_id
 
     # metadata
-    # @return [Object]
+    # @return [Hash]
     attr_accessor :metadata
 
     # A mapping from model property names to API property names
