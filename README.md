@@ -72,6 +72,10 @@ rsp_body = JSON.parse('{'\
   '"Message": "Missing field field_a"'\
 '}')
 
+metadata = JSON.parse('{'\
+  '"foo": "rubytestmeta",'\
+  '"bar": "rubytestmedat2"'\
+'}')
 
 event_req = EventRequestModel.new()
 event_req.time = "2016-09-09T04:45:42.914"
@@ -93,6 +97,7 @@ event_model.request = event_req
 event_model.response = event_rsp
 event_model.user_id ="my_user_id"
 event_model.session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98q3yhwmnhcfx43f"
+event_model.metadata = metadata
 
 # Perform the API call through the SDK function
 response = api_controller.create_event(event_model)
