@@ -3,7 +3,7 @@
 
 [Source Code on GitHub](https://github.com/moesif/moesifapi-ruby)
 
-[Ruby Gem](https://github.com/Moesif/moesifapi-ruby)
+[Ruby Gem](https://rubygems.org/gems/moesif_api)
 
 __Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [Ruby API Reference](https://www.moesif.com/docs/api?ruby) to learn more__
 
