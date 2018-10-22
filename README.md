@@ -1,9 +1,12 @@
 # MoesifApi Lib for Ruby
 
+[![Built For rack][ico-built-for]][link-built-for]
+[![Latest Version][ico-version]][link-package]
+[![Total Downloads][ico-downloads]][link-downloads]
+[![Software License][ico-license]][link-license]
+[![Source Code][ico-source]][link-source]
 
 [Source Code on GitHub](https://github.com/moesif/moesifapi-ruby)
-
-[Ruby Gem](https://rubygems.org/gems/moesif_api)
 
 __Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [Ruby API Reference](https://www.moesif.com/docs/api?ruby) to learn more__
 
@@ -151,3 +154,15 @@ cases as follows:
 
   1. From terminal/cmd navigate to the root directory of the SDK.
   2. Invoke: `bundle exec rake`
+
+  [ico-built-for]: https://img.shields.io/badge/built%20for-rack-blue.svg
+[ico-version]: https://img.shields.io/gem/v/moesif_api.svg
+[ico-downloads]: https://img.shields.io/gem/dt/moesif_api.svg
+[ico-license]: https://img.shields.io/badge/License-Apache%202.0-green.svg
+[ico-source]: https://img.shields.io/github/last-commit/moesif/moesifapi-ruby.svg?style=social
+
+[link-built-for]: https://github.com/rack/rack
+[link-package]: https://rubygems.org/gems/moesif_api
+[link-downloads]: https://rubygems.org/gems/moesif_api
+[link-license]: https://raw.githubusercontent.com/Moesif/moesifapi-ruby/master/LICENSE
+[link-source]: https://github.com/moesif/moesifapi-ruby
