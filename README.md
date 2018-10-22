@@ -161,7 +161,7 @@ cases as follows:
 [ico-license]: https://img.shields.io/badge/License-Apache%202.0-green.svg
 [ico-source]: https://img.shields.io/github/last-commit/moesif/moesifapi-ruby.svg?style=social
 
-[link-built-for]: https://github.com/rack/rack
+[link-built-for]: https://www.ruby-lang.org
 [link-package]: https://rubygems.org/gems/moesif_api
 [link-downloads]: https://rubygems.org/gems/moesif_api
 [link-license]: https://raw.githubusercontent.com/Moesif/moesifapi-ruby/master/LICENSE
