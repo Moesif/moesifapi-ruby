@@ -6,9 +6,9 @@ module MoesifApi
     @base_uri = 'https://api.moesif.net'
 
     # Your Application Id for authentication/authorization
-    @application_id = 'TODO: Replace'
+    @application_id = 'SET_ME'
 
-    @version = '1.1.0'
+    @version = '1.2.2'
 
     # create the getters and setters
     class << self
