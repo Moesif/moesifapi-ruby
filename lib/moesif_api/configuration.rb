@@ -8,7 +8,7 @@ module MoesifApi
     # Your Application Id for authentication/authorization
     @application_id = 'SET_ME'
 
-    @version = '1.2.3'
+    @version = '1.2.4'
 
     # create the getters and setters
     class << self

@@ -124,4 +124,14 @@ class ApiControllerTests < ControllerTestBase
     assert_equal(@response_catcher.response.status_code, 201)
   end
 
+  # Get the application configuration
+  def test_get_app_config()
+
+    # Perform the API call through the SDK function
+    app_config = self.class.controller.get_app_config()
+
+    # Test response code
+    assert_equal(@response_catcher.response.status_code, 200)
+  end
+
 end
