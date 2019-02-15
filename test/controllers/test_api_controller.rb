@@ -134,4 +134,44 @@ class ApiControllerTests < ControllerTestBase
     assert_equal(@response_catcher.response.status_code, 200)
   end
 
+  # Add Single Company via API
+  def test_add_company()
+    # Parameters for the API call
+
+    company_model = CompanyModel.new()
+    company_model.modified_time = Time.now.utc.iso8601
+    company_model.company_id = "1"
+
+    # Perform the API call through the SDK function
+    self.class.controller.add_company(company_model)
+
+    # Test response code
+    assert_equal(@response_catcher.response.status_code, 201)
+  end
+
+  # Add Batched Companies via Ingestion API
+  def test_add_companies_batch()
+    # Parameters for the API call
+
+    company_model_A = CompanyModel.new()
+    company_model_A.modified_time = Time.now.utc.iso8601
+    company_model_A.company_id = "1"
+
+    company_model_B = CompanyModel.new()
+    company_model_B.modified_time = Time.now.utc.iso8601
+    company_model_B.company_id = "2"
+    company_model_B.metadata = JSON.parse('{'\
+        '"string_field": "value_1",'\
+        '"name": "ruby api user",'\
+        '"custom": "testdata"'\
+      '}')
+
+    companies = [company_model_A, company_model_B]
+
+    # Perform the API call through the SDK function
+    self.class.controller.add_companies_batch(companies)
+
+    # Test response code
+    assert_equal(@response_catcher.response.status_code, 201)
+  end
 end

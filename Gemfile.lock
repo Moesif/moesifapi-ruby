@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moesif_api (1.2.4)
+    moesif_api (1.2.5)
       json_mapper (~> 0.2.1)
       moesif_unirest (~> 1.1.5)
       test-unit (~> 3.1.5)
@@ -9,7 +9,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.2)
+    addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
@@ -47,4 +47,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   1.16.2
+   1.16.4
