@@ -125,9 +125,34 @@ user_model.modified_time = Time.now.utc.iso8601  # option, default now.
 user_model.user_id = "testrubyapiuser"  #only required field.
 user_model.metadata = metadata
 
+# Perform the API call through the SDK function
 response = api_controller.update_user(user_model)
 
 ```
+
+### update company
+
+You can also update the metadata for each company. The only required field is company_id
+
+```ruby
+api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
+api_controller = api_client.api
+
+metadata = JSON.parse('{'\
+  '"email": "testrubyapi@user.com",'\
+  '"name": "ruby api user",'\
+  '"location": "United States"'\
+'}')
+
+company_model = CompanyModel.new()
+company_model.modified_time = Time.now.utc.iso8601 # option, default now.
+company_model.company_id = "1" #only required field.
+company_model.metadata = metadata
+
+# Perform the API call through the SDK function
+response = api_controller.update_company(company_model)
+```
+
 ## How to build and install manually:
 
 The generated code depends on a few Ruby gems. The references to these gems are

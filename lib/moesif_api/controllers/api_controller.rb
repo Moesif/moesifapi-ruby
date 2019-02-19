@@ -212,10 +212,10 @@ module MoesifApi
       return _response
     end
 
-    # Add Data for a Single Company
+    # Update Data for a Single Company
     # @param [CompanyModel] body Required parameter.
     # @return void response from the API call
-    def add_company(body)
+    def update_company(body)
       # the base uri for api requests
       _query_builder = Configuration.base_uri.dup
 
@@ -254,7 +254,7 @@ module MoesifApi
     # Update Data for multiple Companies in a single batch (batch size must be less than 250kb)
     # @param [list of CompanyModel] body Required parameter.
     # @return void response from the API call
-    def add_companies_batch(body)
+    def update_companies_batch(body)
       # the base uri for api requests
       _query_builder = Configuration.base_uri.dup
 

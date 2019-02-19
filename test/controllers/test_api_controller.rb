@@ -135,7 +135,7 @@ class ApiControllerTests < ControllerTestBase
   end
 
   # Add Single Company via API
-  def test_add_company()
+  def test_update_company()
     # Parameters for the API call
 
     company_model = CompanyModel.new()
@@ -143,14 +143,14 @@ class ApiControllerTests < ControllerTestBase
     company_model.company_id = "1"
 
     # Perform the API call through the SDK function
-    self.class.controller.add_company(company_model)
+    self.class.controller.update_company(company_model)
 
     # Test response code
     assert_equal(@response_catcher.response.status_code, 201)
   end
 
   # Add Batched Companies via Ingestion API
-  def test_add_companies_batch()
+  def test_update_companies_batch()
     # Parameters for the API call
 
     company_model_A = CompanyModel.new()
@@ -169,7 +169,7 @@ class ApiControllerTests < ControllerTestBase
     companies = [company_model_A, company_model_B]
 
     # Perform the API call through the SDK function
-    self.class.controller.add_companies_batch(companies)
+    self.class.controller.update_companies_batch(companies)
 
     # Test response code
     assert_equal(@response_catcher.response.status_code, 201)
