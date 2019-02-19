@@ -22,6 +22,10 @@ module MoesifApi
     # @return [String]
     attr_accessor :user_id
 
+    # company_id string
+    # @return [String]
+    attr_accessor :company_id
+
     # metadata
     # @return [Hash]
     attr_accessor :metadata
@@ -35,6 +39,7 @@ module MoesifApi
         @hash["session_token"] = "session_token"
         @hash["tags"] = "tags"
         @hash["user_id"] = "user_id"
+        @hash["company_id"] = "company_id"
         @hash["metadata"] = "metadata"
       end
       @hash
@@ -45,12 +50,14 @@ module MoesifApi
                    session_token = nil,
                    tags = nil,
                    user_id = nil,
+                   company_id = nil,
                    metadata = nil)
       @request = request
       @response = response
       @session_token = session_token
       @tags = tags
       @user_id = user_id
+      @company_id = company_id
       @metadata = metadata
     end
 
@@ -65,6 +72,7 @@ module MoesifApi
         session_token = hash["session_token"]
         tags = hash["tags"]
         user_id = hash["user_id"]
+        company_id = hash["company_id"]
         metadata = hash["metadata"]
 
         # Create object from extracted values
@@ -73,6 +81,7 @@ module MoesifApi
                              session_token,
                              tags,
                              user_id,
+                             company_id,
                              metadata)
       end
     end
