@@ -130,9 +130,9 @@ response = api_controller.update_user(user_model)
 
 ```
 
-### add company
+### update company
 
-You can also add the metadata for each company. The only required field is company_id
+You can also update the metadata for each company. The only required field is company_id
 
 ```ruby
 api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
@@ -150,7 +150,7 @@ company_model.company_id = "1" #only required field.
 company_model.metadata = metadata
 
 # Perform the API call through the SDK function
-response = api_controller.add_company(company_model)
+response = api_controller.update_company(company_model)
 ```
 
 ## How to build and install manually:
