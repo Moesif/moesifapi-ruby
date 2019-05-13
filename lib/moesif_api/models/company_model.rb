@@ -70,7 +70,7 @@ module MoesifApi
         metadata = hash["metadata"]
 
         # Create object from extracted values
-        UserModel.new(company_id,
+        CompanyModel.new(company_id,
                       modified_time,
                       ip_address,
                       session_token,

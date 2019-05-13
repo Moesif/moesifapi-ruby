@@ -124,6 +124,35 @@ class ApiControllerTests < ControllerTestBase
     assert_equal(@response_catcher.response.status_code, 201)
   end
 
+  # Add Batched Users via Ingestion API
+  def test_update_users_batch()
+    # Parameters for the API call
+
+    metadata = JSON.parse('{'\
+      '"email": "testrubyapi@user.com",'\
+      '"name": "ruby api user",'\
+      '"custom": "testdata"'\
+    '}')
+
+    user_model_A = UserModel.new()
+    user_model_A.modified_time = Time.now.utc.iso8601
+    user_model_A.user_id = "testrubyapiuser"
+    user_model_A.metadata = metadata
+
+    user_model_B = UserModel.new()
+    user_model_B.modified_time = Time.now.utc.iso8601
+    user_model_B.user_id = "testrubyapiuser1"
+    user_model_B.metadata = metadata
+
+    users = [user_model_A, user_model_B]
+
+    # Perform the API call through the SDK function
+    self.class.controller.update_users_batch(users)
+
+    # Test response code
+    assert_equal(@response_catcher.response.status_code, 201)
+  end
+
   # Get the application configuration
   def test_get_app_config()
 
