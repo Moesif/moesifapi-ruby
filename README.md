@@ -177,8 +177,9 @@ Note: You will need to have internet access for this step.
 You can test the generated SDK and the server with automatically generated test
 cases as follows:
 
-  1. From terminal/cmd navigate to the root directory of the SDK.
-  2. Invoke: `bundle exec rake`
+  1. Add your Moesif application id to 'test/controllers/controller_test_base'. You can find your Application Id from [_Moesif Dashboard_](https://www.moesif.com/) -> _Top Right Menu_ -> _Installation_
+  2. From terminal/cmd navigate to the root directory of the SDK.
+  3. Invoke: `bundle exec rake`
 
   [ico-built-for]: https://img.shields.io/badge/built%20for-rack-blue.svg
 [ico-version]: https://img.shields.io/gem/v/moesif_api.svg
