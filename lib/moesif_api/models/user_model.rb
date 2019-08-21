@@ -8,6 +8,10 @@ module MoesifApi
     # @return [String]
     attr_accessor :user_id
 
+    # company id associated with the user if avaialble.
+    # @return [String]
+    attr_accessor :company_id
+
     # Time when modification was made. default to current time on server side.
     # @return [DateTime]
     attr_accessor :modified_time
@@ -33,6 +37,7 @@ module MoesifApi
       if @hash.nil?
         @hash = {}
         @hash["user_id"] = "user_id"
+        @hash["company_id"] = "company_id"
         @hash["modified_time"] = "modified_time"
         @hash["ip_address"] = "ip_address"
         @hash["session_token"] = "session_token"
@@ -43,12 +48,14 @@ module MoesifApi
     end
 
     def initialize(user_id = nil,
+                   company_id = nil,
                    modified_time = nil,
                    ip_address = nil,
                    session_token = nil,
                    user_agent_string = nil,
                    metadata = nil)
       @user_id = user_id
+      @company_id = company_id
       @modified_time = modified_time
       @ip_address = ip_address
       @session_token = session_token
@@ -63,6 +70,7 @@ module MoesifApi
       else
         # Extract variables from the hash
         user_id = hash["user_id"]
+        company_id = hash["company_id"]
         modified_time = DateTime.iso8601(hash["modified_time"]) if hash["modified_time"]
         ip_address = hash["ip_address"]
         session_token = hash["session_token"]
@@ -71,6 +79,7 @@ module MoesifApi
 
         # Create object from extracted values
         UserModel.new(user_id,
+                      company_id,
                       modified_time,
                       ip_address,
                       session_token,

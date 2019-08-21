@@ -62,7 +62,7 @@ req_body = JSON.parse( '{'\
 '}')
 
 rsp_headers = JSON.parse('{'\
-  '"Date": "Tue, 23 Aug 2016 23:46:49 GMT",'\
+  '"Date": "Tue, 20 Aug 2019 23:46:49 GMT",'\
                 '"Vary": "Accept-Encoding",'\
   '"Pragma": "no-cache",'\
   '"Expires": "-1",'\
@@ -99,6 +99,7 @@ event_model = EventModel.new()
 event_model.request = event_req
 event_model.response = event_rsp
 event_model.user_id ="my_user_id"
+event_model.company_id = "my_company_id"
 event_model.session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98q3yhwmnhcfx43f"
 event_model.metadata = metadata
 
@@ -122,7 +123,8 @@ metadata = JSON.parse('{'\
 
 user_model = UserModel.new()
 user_model.modified_time = Time.now.utc.iso8601  # option, default now.
-user_model.user_id = "testrubyapiuser"  #only required field.
+user_model.user_id = "12345"  #only required field.
+user_model.company_id = "67890"
 user_model.metadata = metadata
 
 # Perform the API call through the SDK function
@@ -146,7 +148,7 @@ metadata = JSON.parse('{'\
 
 company_model = CompanyModel.new()
 company_model.modified_time = Time.now.utc.iso8601 # option, default now.
-company_model.company_id = "1" #only required field.
+company_model.company_id = "12345" #only required field.
 company_model.metadata = metadata
 
 # Perform the API call through the SDK function
