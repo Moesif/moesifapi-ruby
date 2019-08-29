@@ -30,8 +30,15 @@ gem install moesif_api
 
 After having installed the gem, you can easily use the SDK following these steps.
 
-  1. Create a "moesif_api_test.rb" file in the root directory.
-  2. Use any controller as follows:
+Your Moesif Application Id can be found in the [_Moesif Portal_](https://www.moesif.com/).
+After signing up for a Moesif account, your Moesif Application Id will be displayed during the onboarding steps. 
+
+You can always find your Moesif Application Id at any time by logging 
+into the [_Moesif Portal_](https://www.moesif.com/), click on the top right menu,
+and then clicking _Installation_.
+
+### Create Event
+
 ```ruby
 require 'moesif_api'
 
@@ -81,7 +88,7 @@ metadata = JSON.parse('{'\
 '}')
 
 event_req = EventRequestModel.new()
-event_req.time = "2016-09-09T04:45:42.914"
+event_req.time = "2019-09-09T04:45:42.914"
 event_req.uri = "https://api.acmeinc.com/items/reviews/"
 event_req.verb = "PATCH"
 event_req.api_version = "1.1.0"
@@ -90,7 +97,7 @@ event_req.headers = req_headers
 event_req.body = req_body
 
 event_rsp = EventResponseModel.new()
-event_rsp.time = "2016-09-09T04:45:42.914"
+event_rsp.time = "2019-09-09T04:45:42.914"
 event_rsp.status = 500
 event_rsp.headers = rsp_headers
 event_rsp.body = rsp_body
@@ -107,7 +114,7 @@ event_model.metadata = metadata
 response = api_controller.create_event(event_model)
 ```
 
-### update user
+### Update User
 
 You can also update the metadata for each user. The only required field is user_id
 
@@ -132,7 +139,7 @@ response = api_controller.update_user(user_model)
 
 ```
 
-### update company
+### Update Company
 
 You can also update the metadata for each company. The only required field is company_id
 
