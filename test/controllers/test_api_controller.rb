@@ -113,11 +113,16 @@ class ApiControllerTests < ControllerTestBase
       '"custom": "testdata"'\
     '}')
 
+    campaign_model = CampaignModel.new()
+    campaign_model.utm_source = "Newsletter"
+    campaign_model.utm_medium = "Email"
+
     user_model = UserModel.new()
     user_model.modified_time = Time.now.utc.iso8601
     user_model.user_id = "12345"
     user_model.company_id = "67890"
     user_model.metadata = metadata
+    user_model.campaign = campaign_model
 
     # Perform the API call through the SDK function
     self.class.controller.update_user(user_model)
@@ -171,9 +176,14 @@ class ApiControllerTests < ControllerTestBase
   def test_update_company()
     # Parameters for the API call
 
+    campaign_model = CampaignModel.new()
+    campaign_model.utm_source = "Adwords"
+    campaign_model.utm_medium = "Twitter"
+
     company_model = CompanyModel.new()
     company_model.modified_time = Time.now.utc.iso8601
     company_model.company_id = "12345"
+    company_model.campaign = campaign_model
 
     # Perform the API call through the SDK function
     self.class.controller.update_company(company_model)

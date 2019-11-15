@@ -128,11 +128,16 @@ metadata = JSON.parse('{'\
   '"custom": "testdata"'\
 '}')
 
+campaign_model = CampaignModel.new()
+campaign_model.utm_source = "Newsletter"
+campaign_model.utm_medium = "Email"
+
 user_model = UserModel.new()
 user_model.modified_time = Time.now.utc.iso8601  # option, default now.
 user_model.user_id = "12345"  #only required field.
 user_model.company_id = "67890"
 user_model.metadata = metadata
+user_model.campaign = campaign_model
 
 # Perform the API call through the SDK function
 response = api_controller.update_user(user_model)
@@ -153,10 +158,15 @@ metadata = JSON.parse('{'\
   '"location": "United States"'\
 '}')
 
+campaign_model = CampaignModel.new()
+campaign_model.utm_source = "Adwords"
+campaign_model.utm_medium = "Twitter"
+
 company_model = CompanyModel.new()
 company_model.modified_time = Time.now.utc.iso8601 # option, default now.
 company_model.company_id = "12345" #only required field.
 company_model.metadata = metadata
+company_model.campaign = campaign_model
 
 # Perform the API call through the SDK function
 response = api_controller.update_company(company_model)

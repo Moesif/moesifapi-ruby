@@ -28,6 +28,10 @@ module MoesifApi
     # @return [Object]
     attr_accessor :metadata
 
+    # campaign object
+    # @return [CampaignModel]
+    attr_accessor :campaign
+
     # A mapping from model property names to API property names
     def self.names
       if @hash.nil?
@@ -38,6 +42,7 @@ module MoesifApi
         @hash["session_token"] = "session_token"
         @hash["company_domain"] = "company_domain"
         @hash["metadata"] = "metadata"
+        @hash["campaign"] = "campaign"
       end
       @hash
     end
@@ -47,13 +52,15 @@ module MoesifApi
                    ip_address = nil,
                    session_token = nil,
                    company_domain = nil,
-                   metadata = nil)
+                   metadata = nil,
+                   campaign = nil)
       @company_id = company_id
       @modified_time = modified_time
       @ip_address = ip_address
       @session_token = session_token
       @company_domain = company_domain
       @metadata = metadata
+      @campaign = campaign
     end
 
     # Creates an instance of the object from a hash
@@ -68,6 +75,7 @@ module MoesifApi
         session_token = hash["session_token"]
         company_domain = hash["company_domain"]
         metadata = hash["metadata"]
+        campaign = CampaignModel.from_hash(hash["campaign"]) if hash["campaign"]
 
         # Create object from extracted values
         CompanyModel.new(company_id,
@@ -75,7 +83,8 @@ module MoesifApi
                       ip_address,
                       session_token,
                       company_domain,
-                      metadata)
+                      metadata,
+                      campaign)
       end
     end
   end
