@@ -30,6 +30,10 @@ module MoesifApi
     # @return [Hash]
     attr_accessor :metadata
 
+    # direction string
+    # @return [String]
+    attr_accessor :direction
+
     # A mapping from model property names to API property names
     def self.names
       if @hash.nil?
@@ -41,6 +45,7 @@ module MoesifApi
         @hash["user_id"] = "user_id"
         @hash["company_id"] = "company_id"
         @hash["metadata"] = "metadata"
+        @hash["direction"] = "direction"
       end
       @hash
     end
@@ -51,7 +56,8 @@ module MoesifApi
                    tags = nil,
                    user_id = nil,
                    company_id = nil,
-                   metadata = nil)
+                   metadata = nil,
+                   direction = nil)
       @request = request
       @response = response
       @session_token = session_token
@@ -59,6 +65,7 @@ module MoesifApi
       @user_id = user_id
       @company_id = company_id
       @metadata = metadata
+      @direction = direction
     end
 
     # Creates an instance of the object from a hash
@@ -74,6 +81,7 @@ module MoesifApi
         user_id = hash["user_id"]
         company_id = hash["company_id"]
         metadata = hash["metadata"]
+        direction = hash["direction"]
 
         # Create object from extracted values
         EventModel.new(request,
@@ -82,7 +90,8 @@ module MoesifApi
                              tags,
                              user_id,
                              company_id,
-                             metadata)
+                             metadata,
+                             direction)
       end
     end
   end
