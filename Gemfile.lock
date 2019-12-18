@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moesif_api (1.2.10)
+    moesif_api (1.2.11)
       json_mapper (~> 0.2.1)
       moesif_unirest (~> 1.1.5)
       test-unit (~> 3.1.5)
@@ -16,7 +16,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    json (2.2.0)
+    json (2.3.0)
     json_mapper (0.2.1)
       json (>= 1.4.3)
     mime-types (3.3)
