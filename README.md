@@ -114,62 +114,177 @@ event_model.metadata = metadata
 response = api_controller.create_event(event_model)
 ```
 
-### Update User
+## Update a Single User
 
-You can also update the metadata for each user. The only required field is user_id
+Create or update a user profile in Moesif.
+The metadata field can be any customer demographic or other info you want to store.
+Only the `userId` field is required.
+For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby#update-a-user).
 
 ```ruby
-api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
-api_controller = api_client.api
+api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
-metadata = JSON.parse('{'\
-  '"email": "testrubyapi@user.com",'\
-  '"name": "ruby api user",'\
-  '"custom": "testdata"'\
-'}')
+metadata => {
+  :email => 'john@acmeinc.com',
+  :first_name => 'John',
+  :last_name => 'Doe',
+  :title => 'Software Engineer',
+  :salesInfo => {
+      :stage => 'Customer',
+      :lifetime_value => 24000,
+      :accountOwner => 'mary@contoso.com',
+  }
+}
 
-campaign_model = CampaignModel.new()
-campaign_model.utm_source = "Newsletter"
-campaign_model.utm_medium = "Email"
+# Campaign object is optional, but useful if you want to track ROI of acquisition channels
+# See https://www.moesif.com/docs/api#users for campaign schema
+campaign = CampaignModel.new()
+campaign.utm_source = "google"
+campaign.utm_medium = "cpc"
+campaign.utm_campaign = "adwords"
+campaign.utm_term = "api+tooling"
+campaign.utm_content = "landing"
 
-user_model = UserModel.new()
-user_model.modified_time = Time.now.utc.iso8601  # option, default now.
-user_model.user_id = "12345"  #only required field.
-user_model.company_id = "67890"
-user_model.metadata = metadata
-user_model.campaign = campaign_model
+# Only user_id is required.
+# metadata can be any custom object
+user = UserModel.new()
+user.user_id = "12345"
+user.company_id = "67890" # If set, associate user with a company object
+user.campaign = campaign
+user.metadata = metadata
 
-# Perform the API call through the SDK function
-response = api_controller.update_user(user_model)
-
+update_user = api_client.update_user(user)
 ```
 
-### Update Company
+## Update Users in Batch
 
-You can also update the metadata for each company. The only required field is company_id
+Similar to UpdateUser, but used to update a list of users in one batch. 
+Only the `userId` field is required.
+For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby#update-users-in-batch).
 
 ```ruby
-api_client = MoesifApi::MoesifAPIClient.new(my_application_id)
-api_controller = api_client.api
+api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
-metadata = JSON.parse('{'\
-  '"email": "testrubyapi@user.com",'\
-  '"name": "ruby api user",'\
-  '"location": "United States"'\
-'}')
+users = []
 
-campaign_model = CampaignModel.new()
-campaign_model.utm_source = "Adwords"
-campaign_model.utm_medium = "Twitter"
+metadata => {
+  :email => 'john@acmeinc.com',
+  :first_name => 'John',
+  :last_name => 'Doe',
+  :title => 'Software Engineer',
+  :salesInfo => {
+      :stage => 'Customer',
+      :lifetime_value => 24000,
+      :accountOwner => 'mary@contoso.com',
+  }
+}
 
-company_model = CompanyModel.new()
-company_model.modified_time = Time.now.utc.iso8601 # option, default now.
-company_model.company_id = "12345" #only required field.
-company_model.metadata = metadata
-company_model.campaign = campaign_model
+# Campaign object is optional, but useful if you want to track ROI of acquisition channels
+# See https://www.moesif.com/docs/api#users for campaign schema
+campaign = CampaignModel.new()
+campaign.utm_source = "google"
+campaign.utm_medium = "cpc"
+campaign.utm_campaign = "adwords"
+campaign.utm_term = "api+tooling"
+campaign.utm_content = "landing"
 
-# Perform the API call through the SDK function
-response = api_controller.update_company(company_model)
+# Only user_id is required.
+# metadata can be any custom object
+user = UserModel.new()
+user.user_id = "12345"
+user.company_id = "67890" # If set, associate user with a company object
+user.campaign = campaign
+user.metadata = metadata
+
+users << user
+
+api_client = api_controller.update_users_batch(user_model)
+```
+
+## Update a Single Company
+
+Create or update a company profile in Moesif.
+The metadata field can be any company demographic or other info you want to store.
+Only the `companyId` field is required.
+For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby#update-a-company).
+
+```ruby
+api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
+
+metadata => {
+  :org_name => 'Acme, Inc',
+  :plan_name => 'Free',
+  :deal_stage => 'Lead',
+  :mrr => 24000,
+  :demographics => {
+      :alexa_ranking => 500000,
+      :employee_count => 47
+  }
+}
+
+# Campaign object is optional, but useful if you want to track ROI of acquisition channels
+# See https://www.moesif.com/docs/api#update-a-company for campaign schema
+campaign = CampaignModel.new()
+campaign.utm_source = "google"
+campaign.utm_medium = "cpc"
+campaign.utm_campaign = "adwords"
+campaign.utm_term = "api+tooling"
+campaign.utm_content = "landing"
+
+# Only company_id is required.
+# metadata can be any custom object
+company = CompanyModel.new()
+company.company_id = "67890"
+company.company_domain = "acmeinc.com" # If domain is set, Moesif will enrich your profiles with publicly available info 
+company.campaign = campaign
+company.metadata = metadata
+
+update_company = api_client.update_company(company)
+```
+
+
+## Update Companies in Batch
+
+Similar to updateCompany, but used to update a list of companies in one batch. 
+Only the `companyId` field is required.
+For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby#update-companies-in-batch).
+
+```ruby
+api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
+
+companies = []
+
+metadata => {
+  :org_name => 'Acme, Inc',
+  :plan_name => 'Free',
+  :deal_stage => 'Lead',
+  :mrr => 24000,
+  :demographics => {
+      :alexa_ranking => 500000,
+      :employee_count => 47
+  }
+}
+
+# Campaign object is optional, but useful if you want to track ROI of acquisition channels
+# See https://www.moesif.com/docs/api#update-a-company for campaign schema
+campaign = CampaignModel.new()
+campaign.utm_source = "google"
+campaign.utm_medium = "cpc"
+campaign.utm_campaign = "adwords"
+campaign.utm_term = "api+tooling"
+campaign.utm_content = "landing"
+
+# Only company_id is required.
+# metadata can be any custom object
+company = CompanyModel.new()
+company.company_id = "67890"
+company.company_domain = "acmeinc.com" # If domain is set, Moesif will enrich your profiles with publicly available info 
+company.campaign = campaign
+company.metadata = metadata
+
+companies << company
+
+update_company = api_client.update_companies(companies)
 ```
 
 ## How to build and install manually:
