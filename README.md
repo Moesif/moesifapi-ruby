@@ -124,7 +124,7 @@ For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby
 ```ruby
 api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
-metadata => {
+metadata = {
   :email => 'john@acmeinc.com',
   :first_name => 'John',
   :last_name => 'Doe',
@@ -138,7 +138,7 @@ metadata => {
 
 # Campaign object is optional, but useful if you want to track ROI of acquisition channels
 # See https://www.moesif.com/docs/api#users for campaign schema
-campaign = CampaignModel.new()
+campaign = MoesifApi::CampaignModel.new()
 campaign.utm_source = "google"
 campaign.utm_medium = "cpc"
 campaign.utm_campaign = "adwords"
@@ -147,7 +147,7 @@ campaign.utm_content = "landing"
 
 # Only user_id is required.
 # metadata can be any custom object
-user = UserModel.new()
+user = MoesifApi::UserModel.new()
 user.user_id = "12345"
 user.company_id = "67890" # If set, associate user with a company object
 user.campaign = campaign
@@ -167,7 +167,7 @@ api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
 users = []
 
-metadata => {
+metadata = {
   :email => 'john@acmeinc.com',
   :first_name => 'John',
   :last_name => 'Doe',
@@ -181,7 +181,7 @@ metadata => {
 
 # Campaign object is optional, but useful if you want to track ROI of acquisition channels
 # See https://www.moesif.com/docs/api#users for campaign schema
-campaign = CampaignModel.new()
+campaign = MoesifApi::CampaignModel.new()
 campaign.utm_source = "google"
 campaign.utm_medium = "cpc"
 campaign.utm_campaign = "adwords"
@@ -190,7 +190,7 @@ campaign.utm_content = "landing"
 
 # Only user_id is required.
 # metadata can be any custom object
-user = UserModel.new()
+user = MoesifApi::UserModel.new()
 user.user_id = "12345"
 user.company_id = "67890" # If set, associate user with a company object
 user.campaign = campaign
@@ -211,7 +211,7 @@ For details, visit the [Ruby API Reference](https://www.moesif.com/docs/api?ruby
 ```ruby
 api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
-metadata => {
+metadata = {
   :org_name => 'Acme, Inc',
   :plan_name => 'Free',
   :deal_stage => 'Lead',
@@ -224,7 +224,7 @@ metadata => {
 
 # Campaign object is optional, but useful if you want to track ROI of acquisition channels
 # See https://www.moesif.com/docs/api#update-a-company for campaign schema
-campaign = CampaignModel.new()
+campaign = MoesifApi::CampaignModel.new()
 campaign.utm_source = "google"
 campaign.utm_medium = "cpc"
 campaign.utm_campaign = "adwords"
@@ -233,7 +233,7 @@ campaign.utm_content = "landing"
 
 # Only company_id is required.
 # metadata can be any custom object
-company = CompanyModel.new()
+company = MoesifApi::CompanyModel.new()
 company.company_id = "67890"
 company.company_domain = "acmeinc.com" # If domain is set, Moesif will enrich your profiles with publicly available info 
 company.campaign = campaign
@@ -254,7 +254,7 @@ api_client = MoesifApi::MoesifAPIClient.new('YOUR_COLLECTOR_APPLICATION_ID').api
 
 companies = []
 
-metadata => {
+metadata = {
   :org_name => 'Acme, Inc',
   :plan_name => 'Free',
   :deal_stage => 'Lead',
@@ -267,7 +267,7 @@ metadata => {
 
 # Campaign object is optional, but useful if you want to track ROI of acquisition channels
 # See https://www.moesif.com/docs/api#update-a-company for campaign schema
-campaign = CampaignModel.new()
+campaign = MoesifApi::CampaignModel.new()
 campaign.utm_source = "google"
 campaign.utm_medium = "cpc"
 campaign.utm_campaign = "adwords"
@@ -276,7 +276,7 @@ campaign.utm_content = "landing"
 
 # Only company_id is required.
 # metadata can be any custom object
-company = CompanyModel.new()
+company = MoesifApi::CompanyModel.new()
 company.company_id = "67890"
 company.company_domain = "acmeinc.com" # If domain is set, Moesif will enrich your profiles with publicly available info 
 company.campaign = campaign
