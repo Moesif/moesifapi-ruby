@@ -1,4 +1,5 @@
-
+require 'zlib'
+require 'net/http'
 
 module MoesifApi
   class ApiController < BaseController
@@ -6,6 +7,43 @@ module MoesifApi
     # Singleton instance of the controller class
     def self.instance
       @@instance
+    end
+
+    # API Call to send data to Moesif 
+    # @param [EventModel] body Required [Hash] headers Required [String] url Required
+    # @return response and context from the API call
+    def send_moesif(url, headers, body)
+      begin
+        # Gzip the body
+        gzip = Zlib::GzipWriter.new(StringIO.new)
+        gzip << body.to_json
+        gzip_body = gzip.close.string
+
+        # Add Content-Encoding header
+        headers['Content-Encoding'] = 'gzip'
+         # Gzip payload
+         _request_body = gzip_body
+      rescue => e
+         # Json payload
+         _request_body = body.to_json
+      end
+
+      # Create the HttpRequest object for the call
+      _request = @http_client.post url, headers: headers, parameters: _request_body
+
+      # Call the on_before_request callback
+      @http_call_back.on_before_request(_request) if @http_call_back
+
+      # Invoke the API call and get the response
+      _response = @http_client.execute_as_string(_request)
+
+      # Wrap the request and response in an HttpContext object
+      _context = HttpContext.new(_request, _response)
+
+      # Call the on_after_response callback
+      @http_call_back.on_after_response(_context) if @http_call_back
+
+      return _response, _context
     end
 
     # Add Single API Event Call
@@ -28,20 +66,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
@@ -70,20 +96,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
@@ -112,20 +126,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
@@ -152,20 +154,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
@@ -232,20 +222,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
@@ -271,20 +249,8 @@ module MoesifApi
         'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
       }
 
-      # Create the HttpRequest object for the call
-      _request = @http_client.post _query_url, headers: _headers, parameters: body.to_json
-
-      # Call the on_before_request callback
-      @http_call_back.on_before_request(_request) if @http_call_back
-
-      # Invoke the API call and get the response
-      _response = @http_client.execute_as_string(_request)
-
-      # Wrap the request and response in an HttpContext object
-      _context = HttpContext.new(_request, _response)
-
-      # Call the on_after_response callback
-      @http_call_back.on_after_response(_context) if @http_call_back
+      # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
+      _response, _context = send_moesif(_query_url, _headers, body)
 
       # Global error handling using HTTP status codes.
       validate_response(_context)
