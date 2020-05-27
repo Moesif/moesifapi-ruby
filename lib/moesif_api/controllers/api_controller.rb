@@ -21,12 +21,16 @@ module MoesifApi
 
         # Add Content-Encoding header
         headers['Content-Encoding'] = 'gzip'
-         # Create the HttpRequest object for the call
-        _request = @http_client.post url, headers: headers, parameters: gzip_body
+         # Gzip payload
+         _request_body = gzip_body
       rescue => e
-         # Create the HttpRequest object for the call
-        _request = @http_client.post url, headers: headers, parameters: body.to_json
+         # Json payload
+         _request_body = body.to_json
       end
+
+      # Create the HttpRequest object for the call
+      _request = @http_client.post url, headers: headers, parameters: _request_body
+
       # Call the on_before_request callback
       @http_call_back.on_before_request(_request) if @http_call_back
 
