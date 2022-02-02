@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.email = 'derric@moesif.com'
   s.homepage = 'https://moesif.com'
   s.license = 'Apache-2.0'
-  s.add_dependency('test-unit', '~> 3.5', '>= 3.5.0')
+  s.add_development_dependency('test-unit', '~> 3.5', '>= 3.5.0')
   s.add_dependency('moesif_unirest', '~> 1.1.6')
-  s.add_dependency('json_mapper', '~> 0.2.1')
+  s.add_dependency('json_mapper', '~> 0.2', '>= 0.2.1')
   s.required_ruby_version = '>= 2.0'
   s.files = Dir['{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*']
   s.require_paths = ['lib']
