@@ -9,7 +9,7 @@ module MoesifApi
       @@instance
     end
 
-    # API Call to send data to Moesif 
+    # API Call to send data to Moesif
     # @param [EventModel] body Required [Hash] headers Required [String] url Required
     # @return response and context from the API call
     def send_moesif(url, headers, body)
@@ -170,6 +170,47 @@ module MoesifApi
 
       # prepare query string for API call
       _query_builder << '/v1/config'
+
+      # validate and preprocess url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # prepare headers
+      _headers = {
+        'content-type' => 'application/json; charset=utf-8',
+        'X-Moesif-Application-Id' => Configuration.application_id
+      }
+
+      # Create the HttpRequest object for the call
+      _request = @http_client.get _query_url, headers: _headers
+
+      # Call the on_before_request callback
+      @http_call_back.on_before_request(_request) if @http_call_back
+
+      # Invoke the API call and get the response
+      _response = @http_client.execute_as_string(_request)
+
+      # Wrap the request and response in an HttpContext object
+      _context = HttpContext.new(_request, _response)
+
+      # Call the on_after_response callback
+      @http_call_back.on_after_response(_context) if @http_call_back
+
+      # Global error handling using HTTP status codes.
+      validate_response(_context)
+
+      # Return the response
+      return _response
+    end
+
+    # Get App Governance Rules
+    # @param void Required parameter.
+    # @return response from the API call
+    def get_rules()
+      # the base uri for api requests
+      _query_builder = Configuration.base_uri.dup
+
+      # prepare query string for API call
+      _query_builder << '/v1/rules'
 
       # validate and preprocess url
       _query_url = APIHelper.clean_url _query_builder
