@@ -67,8 +67,7 @@ module MoesifApi
                    metadata = nil,
                    direction = nil,
                    weight = nil,
-                   blocked_by = nil,
-                  )
+                   blocked_by = nil)
       @request = request
       @response = response
       @session_token = session_token
@@ -108,8 +107,7 @@ module MoesifApi
                        metadata,
                        direction,
                        weight,
-                       blocked_by
-                      )
+                       blocked_by)
       end
     end
   end
