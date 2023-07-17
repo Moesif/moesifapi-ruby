@@ -44,9 +44,10 @@ module MoesifApi
         auth = { user: http_request.username, password: http_request.password }
       end
 
-      response = Unirest.method(http_request.http_method.downcase).call(http_request.query_url,
-                                                                        headers: http_request.headers, parameters: http_request.parameters,
-                                                                        auth: auth)
+      response = @connection.run_request(http_request.http_method.downcase.to_sym,
+                                         http_request.query_url,
+                                         http_request.parameters, # body
+                                         http_request.headers)
 
       convert_response(response)
     end
