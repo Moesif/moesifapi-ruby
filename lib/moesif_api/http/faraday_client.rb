@@ -1,11 +1,20 @@
 require 'faraday'
 require 'faraday/net_http_persistent'
+require 'faraday/retry'
 
 module MoesifApi
   class FaradayClient < HttpClient
     def initialize
       super()
+      retry_options = {
+        max: 3,
+        interval: 0.1,
+        interval_randomness: 0.5,
+        backoff_factor: 2
+      }
+
       @connection = Faraday.new({}) do |f|
+        f.request :retry, retry_options
         f.adapter :net_http_persistent, pool_size: 5 do |http|
           http.idle_timeout = 100
         end
