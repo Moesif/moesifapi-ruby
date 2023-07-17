@@ -19,6 +19,7 @@ require_relative 'moesif_api/http/http_request.rb'
 require_relative 'moesif_api/http/http_response.rb'
 require_relative 'moesif_api/http/http_context.rb'
 require_relative 'moesif_api/http/unirest_client.rb'
+require_relative 'moesif_api/http/faraday_client.rb'
 
 # Models
 require_relative 'moesif_api/models/base_model.rb'
