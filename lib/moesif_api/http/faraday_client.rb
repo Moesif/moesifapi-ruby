@@ -31,10 +31,6 @@ module MoesifApi
                                          http_request.parameters, # body
                                          http_request.headers)
 
-      # response = Unirest.method(http_request.http_method.downcase).call(http_request.query_url,
-      #                                                                   headers: http_request.headers, parameters: http_request.parameters,
-      #                                                                   auth: auth)
-
       convert_response(response)
     end
 
