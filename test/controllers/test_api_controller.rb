@@ -165,18 +165,19 @@ class ApiControllerTests < ControllerTestBase
   # Get the application configuration
   def test_get_app_config()
     # Perform the API call through the SDK function
-    app_config = self.class.controller.get_app_config()
-
+    app_config, _context = self.class.controller.get_app_config()
+    print "gonna print the app_cofig\n"
+    print app_config.to_s + "\n"
     # Test response code
     assert_equal(@response_catcher.response.status_code, 200)
   end
 
   def test_get_rules()
      # Perform the API call through the SDK function
-    rules_response = self.class.controller.get_rules()
+    rules, _context = self.class.controller.get_rules()
     # Test response code
     print 'gonna print the rules'
-    print rules_response.raw_body
+    print rules.to_s
     assert_equal(@response_catcher.response.status_code, 200)
   end
 

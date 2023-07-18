@@ -182,7 +182,7 @@ module MoesifApi
       # Global error handling using HTTP status codes.
       validate_response(_context)
 
-      _response.json_body, _context
+      return _response.json_body, _context
     end
 
     # Get App Governance Rules
@@ -220,7 +220,7 @@ module MoesifApi
       validate_response(_context)
 
       # Return the response
-      _response.json_body, _context
+      return _response.json_body, _context
     end
 
     # Update Data for a Single Company

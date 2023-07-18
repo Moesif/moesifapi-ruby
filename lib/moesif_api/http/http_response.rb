@@ -16,11 +16,13 @@ module MoesifApi
       @raw_body = raw_body
 
       begin
-        if !raw_body.nil? and raw_body.is_a?(String)
-          @json_body = JSON.parse(uncompressed_string)
+        if !raw_body.nil? and raw_body.is_a?(String) and (raw_body.start_with?("{") || raw_body.start_with?("["))
+          @json_body = JSON.parse(raw_body)
         end
       rescue StandardError => e
         # we can't parse json body
+        # but it is ok, move forward anyways
+        # print "can't parse json " + e.to_s
       end
     end
   end
