@@ -20,7 +20,7 @@ module MoesifApi
           @json_body = JSON.parse(uncompressed_string)
         end
       rescue StandardError => e
-        # we can't parse json body for some reason.
+        # we can't parse json body
       end
     end
   end
