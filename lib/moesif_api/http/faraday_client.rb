@@ -24,9 +24,6 @@ module MoesifApi
 
     # Method overridden from HttpClient.
     def execute_as_string(http_request)
-      if http_request.username || http_request.password
-        auth = { user: http_request.username, password: http_request.password }
-      end
       response = @connection.run_request(http_request.http_method.downcase.to_sym,
                                          http_request.query_url,
                                          http_request.parameters, # body
@@ -37,10 +34,6 @@ module MoesifApi
 
     # Method overridden from HttpClient.
     def execute_as_binary(http_request)
-      if http_request.username || http_request.password
-        auth = { user: http_request.username, password: http_request.password }
-      end
-
       response = @connection.run_request(http_request.http_method.downcase.to_sym,
                                          http_request.query_url,
                                          http_request.parameters, # body

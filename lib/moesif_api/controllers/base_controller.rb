@@ -3,6 +3,8 @@ module MoesifApi
     attr_accessor :http_client, :http_call_back
 
     @@faraday_http_client = FaradayClient.new
+    # if ever weant to switch to @unirest we can switch to below
+    # @@unirest_http_client = UnirestClient.new
 
     def initialize(http_client: nil, http_call_back: nil)
       @http_client = http_client ||= @@faraday_http_client
