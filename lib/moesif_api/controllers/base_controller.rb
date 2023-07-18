@@ -11,10 +11,24 @@ module MoesifApi
       @http_call_back = http_call_back
     end
 
+    def build_request_headers
+      {
+        'content-type' => 'application/json; charset=utf-8',
+        'X-Moesif-Application-Id' => Configuration.application_id,
+        'User-Agent' => Configuration.user_agent || ('moesifapi-ruby/' +  Configuration.version)
+      }
+    end
+
     def validate_response(context)
       return if context.response.status_code.between?(200, 208) # [200,208] = HTTP OK
 
       raise APIException.new 'HTTP Response Not OK', context
+    end
+
+    def decompress_and_parse(response)
+
+
+
     end
   end
 end

@@ -21,12 +21,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'accept' => 'application/json',
-        'X-Moesif-Application-Id' => Configuration.application_id,
-        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
-      }
-
+      _headers = build_request_headers()
       # Create the HttpRequest object for the call
       _request = @http_client.get _query_url, headers: _headers
 

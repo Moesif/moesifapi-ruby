@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moesif_api (1.2.17)
+    moesif_api (2.0.1)
       faraday
       faraday-net_http_persistent (~> 2.0, >= 2.0.1)
       faraday-retry
