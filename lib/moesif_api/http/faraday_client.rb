@@ -33,16 +33,6 @@ module MoesifApi
     end
 
     # Method overridden from HttpClient.
-    def execute_as_binary(http_request)
-      response = @connection.run_request(http_request.http_method.downcase.to_sym,
-                                         http_request.query_url,
-                                         http_request.parameters, # body
-                                         http_request.headers)
-
-      convert_response(response)
-    end
-
-    # Method overridden from HttpClient.
     def convert_response(response)
       if response.body.is_a?(String)
         raw_body = response.body
