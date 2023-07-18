@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday/net_http_persistent'
 require 'faraday/retry'
+require 'json'
 
 module MoesifApi
   class FaradayClient < HttpClient
@@ -50,7 +51,13 @@ module MoesifApi
 
     # Method overridden from HttpClient.
     def convert_response(response)
-      HttpResponse.new(response.status, response.headers.dup, response.body)
+      if response.body.is_a?(String)
+        raw_body = response.body
+      elsif !response.body.nil?
+        raw_body = JSON.generate(response.body)
+      end
+
+      HttpResponse.new(response.status, response.headers.dup, raw_body)
     end
   end
 end
