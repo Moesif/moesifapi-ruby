@@ -15,8 +15,11 @@ module MoesifApi
     end
 
     # Initializer with authentication and configuration parameters
-    def initialize(application_id)
+    def initialize(application_id, user_agent=nil)
       Configuration.application_id = application_id
+      unless user_agent.nil?
+        Configuration.user_agent = user_agent
+      end
     end
   end
 end

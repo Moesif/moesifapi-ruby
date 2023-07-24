@@ -90,11 +90,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id,
-        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
-      }
+      _headers = build_request_headers()
 
       # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
       _response, _context = send_moesif(_query_url, _headers, body)
@@ -120,12 +116,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id,
-        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
-      }
-
+      _headers = build_request_headers()
       # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
       _response, _context = send_moesif(_query_url, _headers, body)
 
@@ -148,11 +139,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id,
-        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
-      }
+      _headers = build_request_headers()
 
       # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
       _response, _context = send_moesif(_query_url, _headers, body)
@@ -175,10 +162,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id
-      }
+      _headers = build_request_headers()
 
       # Create the HttpRequest object for the call
       _request = @http_client.get _query_url, headers: _headers
@@ -198,8 +182,7 @@ module MoesifApi
       # Global error handling using HTTP status codes.
       validate_response(_context)
 
-      # Return the response
-      return _response
+      return _response.json_body, _context
     end
 
     # Get App Governance Rules
@@ -216,10 +199,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id
-      }
+      _headers = build_request_headers()
 
       # Create the HttpRequest object for the call
       _request = @http_client.get _query_url, headers: _headers
@@ -240,7 +220,7 @@ module MoesifApi
       validate_response(_context)
 
       # Return the response
-      return _response
+      return _response.json_body, _context
     end
 
     # Update Data for a Single Company
@@ -257,11 +237,7 @@ module MoesifApi
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
-      _headers = {
-        'content-type' => 'application/json; charset=utf-8',
-        'X-Moesif-Application-Id' => Configuration.application_id,
-        'User-Agent' => 'moesifapi-ruby/' +  Configuration.version
-      }
+      _headers = build_request_headers()
 
       # Create the HttpRequest object for the call, fetch and wrap the respone in a HttpContext object
       _response, _context = send_moesif(_query_url, _headers, body)
