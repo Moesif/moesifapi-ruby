@@ -23,10 +23,5 @@ module MoesifApi
       raise APIException.new 'HTTP Response Not OK', context
     end
 
-    def decompress_and_parse(response)
-
-
-
-    end
   end
 end
