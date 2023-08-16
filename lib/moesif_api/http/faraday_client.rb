@@ -22,30 +22,14 @@ module MoesifApi
         interval_randomness: 0.5,
         backoff_factor: 2
       }
-      faraday_version = Gem.loaded_specs['faraday'].version
 
-      if faraday_version < Gem::Version.new('2.5')
-        # For Faraday 1.x to 2.5 no advanced features
-        # puts "using old faraday version" + faraday_version.to_s
-        # @connection = Faraday.new({})
-        puts "using old faraday version still have retry" + faraday_version.to_s
-
-        @connection = Faraday.new({}) do |f|
-          f.request :retry, retry_options
-          f.adapter :net_http_persistent, pool_size: 5 do |http|
-            http.idle_timeout = 100
-          end
-        end
-      else
-        puts "using new faraday version" + faraday_version.to_s
-        # Use Faraday 2.x specific code here
-        @connection = Faraday.new({}) do |f|
-          f.request :retry, retry_options
-          f.adapter :net_http_persistent, pool_size: 5 do |http|
-            http.idle_timeout = 100
-          end
+      @connection = Faraday.new({}) do |f|
+        f.request :retry, retry_options
+        f.adapter :net_http_persistent, pool_size: 5 do |http|
+          http.idle_timeout = 100
         end
       end
+
     end
 
     # Method overridden from HttpClient.
