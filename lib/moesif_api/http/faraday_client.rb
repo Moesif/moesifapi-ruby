@@ -29,7 +29,6 @@ module MoesifApi
           http.idle_timeout = 100
         end
       end
-
     end
 
     # Method overridden from HttpClient.
