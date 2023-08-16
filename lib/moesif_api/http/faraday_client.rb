@@ -1,7 +1,10 @@
 require 'faraday'
-require 'faraday/net_http_persistent'
-require 'faraday/retry'
 require 'json'
+
+if faraday_version >= Gem::Version.new('2.5')
+  require 'faraday/net_http_persistent'
+  require 'faraday/retry'
+end
 
 module MoesifApi
   class FaradayClient < HttpClient
@@ -13,11 +16,16 @@ module MoesifApi
         interval_randomness: 0.5,
         backoff_factor: 2
       }
-
-      @connection = Faraday.new({}) do |f|
-        f.request :retry, retry_options
-        f.adapter :net_http_persistent, pool_size: 5 do |http|
-          http.idle_timeout = 100
+      if Gem.loaded_specs['faraday'].version < Gem::Version.new('2.5')
+        # For Faraday 1.x to 2.5 no advanced features
+        @connection = Faraday.new({})
+      else
+        # Use Faraday 2.x specific code here
+        @connection = Faraday.new({}) do |f|
+          f.request :retry, retry_options
+          f.adapter :net_http_persistent, pool_size: 5 do |http|
+            http.idle_timeout = 100
+          end
         end
       end
     end
