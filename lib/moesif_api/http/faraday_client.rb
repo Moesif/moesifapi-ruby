@@ -5,7 +5,8 @@ faraday_version = Gem.loaded_specs['faraday'].version
 
 puts "faraday_version " + faraday_version.to_s
 
-# in faraday <1.0 net_http_persistent and retry is build into faraday
+# in faraday < 1.0 net_http_persistent and retry is build into faraday already
+# in faraday >= 2.0 we must require these plugins
 if faraday_version >= Gem::Version.new('2.0')
   require 'faraday/net_http_persistent'
   require 'faraday/retry'
