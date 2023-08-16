@@ -3,7 +3,7 @@ require 'json'
 
 faraday_version = Gem.loaded_specs['faraday'].version
 
-# in faraday < 1.0 net_http_persistent and retry is build into faraday already
+# in faraday < 2.0 net_http_persistent and retry is build into faraday already
 # in faraday >= 2.0 we must require these plugins
 if faraday_version >= Gem::Version.new('2.0')
   require 'faraday/net_http_persistent'
