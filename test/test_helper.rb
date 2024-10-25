@@ -84,7 +84,7 @@ class TestHelper
     if not @cache.keys.include? url
       @cache[url] = Tempfile.new('APIMatic')
       @cache[url].binmode
-      @cache[url].write(open(url, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read)
+      @cache[url].write(File.open(url, 'rb').read)
     else
       @cache[url].open
       @cache[url].binmode
