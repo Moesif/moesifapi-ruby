@@ -8,9 +8,11 @@ module MoesifApi
     # Your Application Id for authentication/authorization
     @application_id = 'SET_ME'
 
-    @version = '2.0.2'
+    @version = '2.1.1'
 
-    @user_agent = "moesifapi-ruby/2.0.2"
+    @user_agent = "moesifapi-ruby/2.1.1"
+
+    @retry_ccount = 3
 
     # create the getters and setters
     class << self
