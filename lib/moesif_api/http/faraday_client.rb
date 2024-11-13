@@ -15,8 +15,8 @@ module MoesifApi
     def initialize
       super()
       retry_options = {
-        max: 3,
-        interval: 0.1,
+        max: Configuration.retry_count,
+        interval: 0.2,
         interval_randomness: 0.5,
         backoff_factor: 2
       }

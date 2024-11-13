@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'moesif_api'
-  s.version = '2.1.0'
+  s.version = '2.1.1'
   s.summary = 'moesif_api'
   s.description = 'Collection/Data Ingestion API'
   s.authors = ['Moesif, Inc', 'Derric Gilling']
