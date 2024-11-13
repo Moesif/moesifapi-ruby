@@ -85,6 +85,83 @@ class ApiControllerTests < ControllerTestBase
     assert_equal(@response_catcher.response.status_code, 201)
   end
 
+  def test_add_bad_event()
+    # Parameters for the API call
+
+    req_headers = JSON.parse('{'\
+      '"Host": "api.acmeinc.com",'\
+      '"Accept": "*/*",'\
+      '"Connection": "Keep-Alive",'\
+      '"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 5.0.2; C6906 Build/14.5.A.0.242)",'\
+      '"Content-Type": "application/json",'\
+      '"Content-Length": "126",'\
+      '"Accept-Encoding": "gzip"'\
+    '}')
+
+    req_body = JSON.parse( '{'\
+      '"items": ['\
+        '{'\
+          '"type": 1,'\
+          '"id": "fwfrf"'\
+        '},'\
+        '{'\
+          '"type": 2,'\
+          '"id": "d43d3f"'\
+        '}'\
+      ']'\
+    '}')
+
+    rsp_headers = JSON.parse('{'\
+      '"Date": "Tue, 6 Jan 2019 23:46:49 GMT",'\
+                    '"Vary": "Accept-Encoding",'\
+      '"Pragma": "no-cache",'\
+      '"Expires": "-1",'\
+      '"Content-Type": "application/json; charset=utf-8",'\
+                    '"Cache-Control": "no-cache"'\
+    '}')
+
+    rsp_body = JSON.parse('{'\
+      '"Error": "InvalidArgumentException",'\
+      '"Message": "Missing field field_a"'\
+    '}')
+
+    metadata = JSON.parse('{'\
+      '"foo": "rubytestmeta",'\
+      '"bar": "rubytestmedat2"'\
+    '}')
+
+    event_req = EventRequestModel.new()
+    event_req.time = Time.now.utc.iso8601
+    event_req.uri = nil
+    event_req.verb = "POST"
+    event_req.api_version = "1.1.0"
+    event_req.ip_address = "61.48.220.123"
+    event_req.headers = req_headers
+    event_req.body = req_body
+
+    event_rsp = EventResponseModel.new()
+    event_rsp.time = (Time.now.utc + 2).iso8601
+    event_rsp.status = 400
+    event_rsp.headers = rsp_headers
+    event_rsp.body = rsp_body
+
+    event_model = EventModel.new()
+    event_model.request = event_req
+    event_model.response = event_rsp
+    event_model.user_id = "my_user_id"
+    event_model.company_id = "my_company_id"
+    event_model.metadata = metadata
+    event_model.session_token = "random"
+
+    # Perform the API call through the SDK function
+
+    error = assert_raises(APIException) do
+      self.class.controller.create_event(event_model)
+    end
+    puts 'error: ' + error.message;
+    assert_match(/422|400/, error.message, "The error message should contain '422' or '400'")
+  end
+
   # Add Batched Events via Ingestion API
   def test_add_batched_events()
     # Parameters for the API call

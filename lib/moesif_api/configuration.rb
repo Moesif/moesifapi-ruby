@@ -12,7 +12,7 @@ module MoesifApi
 
     @user_agent = "moesifapi-ruby/2.1.1"
 
-    @retry_ccount = 5
+    @retry_count = 5
 
     # create the getters and setters
     class << self
@@ -20,6 +20,7 @@ module MoesifApi
       attr_accessor :application_id
       attr_accessor :version
       attr_accessor :user_agent
+      attr_accessor :retry_count
     end
   end
 end

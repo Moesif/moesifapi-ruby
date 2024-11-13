@@ -20,10 +20,11 @@ module MoesifApi
     def validate_response(context)
       return if context.response.status_code.between?(200, 208) # [200,208] = HTTP OK
       res = context.response;
+
       if res.nil?
         raise APIException.new 'No Http Response, maybe timeout', context
       else
-        raise APIException.new 'HTTP Response Not OK ' +  res.status_code + ' ' + res.body, context
+        raise APIException.new 'HTTP Response Not OK ' +  res.status_code.to_s + ' ' + res.raw_body.to_s, context
       end
     end
 
