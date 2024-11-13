@@ -15,7 +15,7 @@ module MoesifApi
     end
 
     # Initializer with authentication and configuration parameters
-    def initialize(application_id, user_agent=nil, retry_ccount=3)
+    def initialize(application_id, user_agent=nil, retry_ccount=5)
       Configuration.application_id = application_id
       Configuration.retry_ccount = retry_count
       unless user_agent.nil?
