@@ -8,9 +8,9 @@ module MoesifApi
     # Your Application Id for authentication/authorization
     @application_id = 'SET_ME'
 
-    @version = '2.1.1'
+    @version = '2.1.2'
 
-    @user_agent = "moesifapi-ruby/2.1.1"
+    @user_agent = "moesifapi-ruby/2.1.2"
 
     @retry_count = 5
 
